@@ -1,0 +1,1 @@
+include ':app', ':tweetnacl-all-debug', ':ownpushclient-all-debug'

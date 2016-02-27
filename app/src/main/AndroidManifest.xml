@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ The MIT License (MIT)
+  ~ Copyright (c) 2016 Fastboot Mobile LLC.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, andor sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  ~
+  ~
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fastbootmobile.rssdemo">
+
+    <!-- Define and use our per app permission using the application public ID-->
+    <permission android:name="com.fastbootmobile.ownpush.6ba2f47e0874b23285a9673ba1fd1b212ebd896406f9d7e7b75c6e172617716a.permission.PUSH"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.fastbootmobile.ownpush.6ba2f47e0874b23285a9673ba1fd1b212ebd896406f9d7e7b75c6e172617716a.permission.PUSH"/>
+
+    <!-- This app needs access to the internet -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ownpush_128"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Register our receiver for push messages -->
+        <receiver android:name=".PushReceiver">
+            <intent-filter>
+                <!-- This is for the OwnPush receive action -->
+                <action android:name="com.fastbootmobile.ownpush.intent.RECEIVE" />
+                <!-- OwnPush also filters by category (using the app public id) -->
+                <category android:name="6ba2f47e0874b23285a9673ba1fd1b212ebd896406f9d7e7b75c6e172617716a"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
